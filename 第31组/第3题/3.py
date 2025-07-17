@@ -47,10 +47,10 @@ def crawl_DBLP_data():
 # f.flush()
 # f.close()
 #
-# with open("D:/3.txt","r",encoding="UTF-8") as f :
-#     data = f.read()
-# data_list = ast.literal_eval(data)
-data_list = crawl_DBLP_data()
+with open("E:/3.txt","r",encoding="UTF-8") as f :
+    data = f.read()
+data_list = ast.literal_eval(data)
+#data_list = crawl_DBLP_data()
 
 
 #统计一下各个会议都在哪些年份
@@ -194,9 +194,25 @@ from pyecharts.charts import Line
 line = Line()
 line.add_xaxis(["2020","2021","2022","2023","2024","2025"])
 line.add_yaxis(series_name="aaai",y_axis=aaai_num)
-line.add_yaxis(series_name="ijcai",y_axis=ijcai_num)
-line.add_yaxis(series_name="cvpr",y_axis=cvpr_num)
-line.add_yaxis(series_name="iccv",y_axis=iccv_num)
+line.render("aaai会议2020年至今每届论文数量变化趋势图.html")
+line = Line()
+line.add_xaxis(["2020","2021","2022","2023","2024"])
+line.add_yaxis(series_name="ijcai",y_axis=ijcai_num[:5])
+line.render("ijcai会议2020年至今每届论文数量变化趋势图.html")
+line = Line()
+line.add_xaxis(["2020","2021","2022","2023","2024"])
+line.add_yaxis(series_name="cvpr",y_axis=cvpr_num[:5])
+line.render("cvpr会议2020年至今每届论文数量变化趋势图.html")
+line = Line()
+line.add_xaxis(["2021","2023"])
+iccv_2 = []
+iccv_2.append(iccv_num[1])
+iccv_2.append(iccv_num[3])
+line.add_yaxis(series_name="iccv",y_axis=iccv_2)
+line.render("iccv会议2020年至今每届论文数量变化趋势图.html")
+
+
+
 
 line.render("各个会议2020年至今每届论文数量变化趋势图.html")
 
